@@ -1,0 +1,32 @@
+{
+  "name": "Travis CI CloudFront Invalidation",
+  "version": "0.0.1",
+  "description": "Simple invalidation tool for AWS CloudFront distributions, called after Travis CI is run.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexpatow/travis-ci-cloudfront-invalidation.git"
+  },
+  "keywords": [
+    "travis-ci",
+    "AWS",
+    "CloudFront"
+  ],
+  "author": "Alex Patow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexpatow/travis-ci-cloudfront-invalidation/issues"
+  },
+  "homepage": "https://github.com/alexpatow/travis-ci-cloudfront-invalidation#readme",
+  "dependencies": {
+    "aws-sdk": "^2.6.15",
+    "commander": "^2.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.9.1",
+    "eslint-plugin-node": "^3.0.3"
+  }
+}
