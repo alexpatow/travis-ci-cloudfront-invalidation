@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const AWS = require('aws-sdk');
 const argv = require('minimist')(process.argv.slice(2),{
     string: ['AWSAccessKey', 'AWSSecretKey', 'CloudFrontDistributionId', 'ItemsforInvalidation', 'TravisBranch', 'TravisPullRequest'],
@@ -12,7 +14,7 @@ const argv = require('minimist')(process.argv.slice(2),{
 });
 
 if (!argv.AWSAccessKey || !argv.AWSSecretKey || !argv.CloudFrontDistributionId || !argv.ItemsforInvalidation) {
-  throw new Error('Missing Required Argument(s)');
+  console.log('Missing Required Argument(s)');
   process.exit(1);
 } else {
   const accessKey = argv.AWSAccessKey;
@@ -53,7 +55,7 @@ var params = {
 
 cloudfront.createInvalidation(params, function(err, data) {
   if (err) {
-    throw new Error('Missing Required Argument(s)');
+    console.log('Error invalidting CloudFront Cache: ' + JSON.stringify(err));
     process.exit(1);
   } else {
     console.log(JSON.stringify(data));
