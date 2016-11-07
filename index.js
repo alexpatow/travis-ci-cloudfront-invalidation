@@ -13,17 +13,17 @@ const argv = require('minimist')(process.argv.slice(2),{
     }
 });
 
-if (!argv.AWSAccessKey || !argv.AWSSecretKey || !argv.CloudFrontDistributionId || !argv.ItemsforInvalidation) {
+if (!argv.AWSAccessKey || !argv.AWSSecretKey || !argv.CloudFrontDistributionId || !argv.ItemsforInvalidation || !argv.TravisBranch || !argv.TravisPullRequest) {
   console.log('Missing Required Argument(s)');
   process.exit(1);
-} else {
-  const accessKey = argv.AWSAccessKey;
-  const secretKey = argv.AWSSecretKey;
-  const distributionId = argv.CloudFrontDistributionId;
-  const items = argv.ItemsforInvalidation.split(',');
-  const isMaster = (argv.TravisBranch === 'master');
-  const isPR = (argv.TravisPullRequest && argv.TravisPullRequest != 'false');
 }
+
+const accessKey = argv.AWSAccessKey;
+const secretKey = argv.AWSSecretKey;
+const distributionId = argv.CloudFrontDistributionId;
+const items = argv.ItemsforInvalidation.split(',');
+const isMaster = (argv.TravisBranch === 'master');
+const isPR = (argv.TravisPullRequest && argv.TravisPullRequest != 'false');
 
 if (isPR !== undefined && isPR) {
   console.log('Travis CI started due to pull request, update of CloudFront not performed.');
