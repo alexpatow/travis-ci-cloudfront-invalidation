@@ -25,7 +25,7 @@ if (!argv.AWSAccessKey || !argv.AWSSecretKey || !argv.CloudFrontDistributionId |
   const isPR = (argv.TravisPullRequest && argv.TravisPullRequest != 'false');
 }
 
-if (isPR) {
+if (isPR !== undefined && isPR) {
   console.log('Travis CI started due to pull request, update of CloudFront not performed.');
   process.exit(0);
 }
