@@ -1,5 +1,5 @@
 {
-  "name": "Travis CI CloudFront Invalidation",
+  "name": "travis-ci-cloudfront-invalidation",
   "version": "0.0.1",
   "description": "Simple invalidation tool for AWS CloudFront distributions, called after Travis CI is run.",
   "main": "index.js",
@@ -23,10 +23,11 @@
   "homepage": "https://github.com/alexpatow/travis-ci-cloudfront-invalidation#readme",
   "dependencies": {
     "aws-sdk": "^2.6.15",
-    "commander": "^2.9.0"
+    "minimist": "^1.2.0"
   },
-  "devDependencies": {
-    "eslint": "^3.9.1",
-    "eslint-plugin-node": "^3.0.3"
-  }
+  "bin": {
+    "travis-ci-cloudfront-invalidation": "index.js"
+  },
+  "engines" : { "node" : ">=4.3.2" },
+  "reveal": true
 }
