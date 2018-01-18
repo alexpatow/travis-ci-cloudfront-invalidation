@@ -2,14 +2,15 @@
 
 const AWS = require('aws-sdk');
 const argv = require('minimist')(process.argv.slice(2),{
-    string: ['AWSAccessKey', 'AWSSecretKey', 'CloudFrontDistributionId', 'ItemsforInvalidation', 'TravisBranch', 'TravisPullRequest'],
+    string: ['AWSAccessKey', 'AWSSecretKey', 'CloudFrontDistributionId', 'ItemsforInvalidation', 'TravisBranch', 'TravisPullRequest', 'OnBranches'],
     alias: {
         a: 'AWSAccessKey',
         s: 'AWSSecretKey',
         c: 'CloudFrontDistributionId',
         i: 'ItemsforInvalidation',
         b: 'TravisBranch',
-        p: 'TravisPullRequest'
+        p: 'TravisPullRequest',
+        o: 'OnBrances'
     }
 });
 
@@ -22,16 +23,16 @@ const accessKey = argv.AWSAccessKey;
 const secretKey = argv.AWSSecretKey;
 const distributionId = argv.CloudFrontDistributionId;
 const items = argv.ItemsforInvalidation.split(',');
-const isMaster = (argv.TravisBranch === 'master');
-const isPR = (argv.TravisPullRequest && argv.TravisPullRequest != 'false');
+const isPR = (argv.TravisPullRequest && argv.TravisPullRequest !== 'false');
+const onBranches = (argv.TravisPullRequest || 'master').split(',').map(Function.prototype.call, String.prototype.trim);
 
 if (isPR !== undefined && isPR) {
   console.log('Travis CI started due to pull request, update of CloudFront not performed.');
   process.exit(0);
 }
 
-if (!isMaster) {
-  console.log('Travis CI not running on Master branch, update of CloudFront not performed.');
+if (onBranches.indexOf(argv.TravisBranch.trim()) === -1) {
+  console.log('Travis CI not running on ' + argv.TravisBranch + ' branch, update of CloudFront not performed.');
   process.exit(0);
 }
 
