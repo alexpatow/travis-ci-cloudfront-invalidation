@@ -10,7 +10,7 @@ const argv = require('minimist')(process.argv.slice(2),{
         i: 'ItemsforInvalidation',
         b: 'TravisBranch',
         p: 'TravisPullRequest',
-        o: 'OnBrances'
+        o: 'OnBranches'
     }
 });
 
@@ -56,7 +56,7 @@ var params = {
 
 cloudfront.createInvalidation(params, function(err, data) {
   if (err) {
-    console.log('Error invalidting CloudFront Cache: ' + JSON.stringify(err));
+    console.log('Error invalidating CloudFront Cache: ' + JSON.stringify(err));
     process.exit(1);
   } else {
     console.log(JSON.stringify(data));
