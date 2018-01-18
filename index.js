@@ -32,7 +32,7 @@ if (isPR !== undefined && isPR) {
 }
 
 if (branches.indexOf(argv.TravisBranch.trim()) === -1) {
-  console.log('Travis CI not running on ' + argv.TravisBranch + ' branch, update of CloudFront not performed.');
+  console.log('Travis CI not running on ' + argv.TravisBranch + ' branch, update of CloudFront not performed. Allowed branches: [' + branches.join(', ') + '].');
   process.exit(0);
 }
 
