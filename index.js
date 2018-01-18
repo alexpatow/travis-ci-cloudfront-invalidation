@@ -24,14 +24,14 @@ const secretKey = argv.AWSSecretKey;
 const distributionId = argv.CloudFrontDistributionId;
 const items = argv.ItemsforInvalidation.split(',');
 const isPR = (argv.TravisPullRequest && argv.TravisPullRequest !== 'false');
-const onBranches = (argv.TravisPullRequest || 'master').split(',').map(Function.prototype.call, String.prototype.trim);
+const branches = (argv.OnBranches || 'master').split(',').map(Function.prototype.call, String.prototype.trim);
 
 if (isPR !== undefined && isPR) {
   console.log('Travis CI started due to pull request, update of CloudFront not performed.');
   process.exit(0);
 }
 
-if (onBranches.indexOf(argv.TravisBranch.trim()) === -1) {
+if (branches.indexOf(argv.TravisBranch.trim()) === -1) {
   console.log('Travis CI not running on ' + argv.TravisBranch + ' branch, update of CloudFront not performed.');
   process.exit(0);
 }
