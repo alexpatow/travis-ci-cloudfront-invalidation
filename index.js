@@ -24,7 +24,7 @@ const secretKey = argv.AWSSecretKey;
 const distributionId = argv.CloudFrontDistributionId;
 const items = argv.ItemsforInvalidation.split(',');
 const isPR = (argv.TravisPullRequest && argv.TravisPullRequest !== 'false');
-const branches = (argv.OnBranches || 'master').split(',').map(Function.prototype.call, String.prototype.trim);
+const branches = (argv.OnBranches || 'master').split(',').map(branch => branch.trim());
 
 if (isPR !== undefined && isPR) {
   console.log('Travis CI started due to pull request, update of CloudFront not performed.');

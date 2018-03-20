@@ -28,6 +28,8 @@
   "bin": {
     "travis-ci-cloudfront-invalidation": "index.js"
   },
-  "engines" : { "node" : ">=4.3.2" },
+  "engines": {
+    "node": ">=4.3.2"
+  },
   "reveal": true
 }
