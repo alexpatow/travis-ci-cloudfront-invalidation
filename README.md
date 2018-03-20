@@ -14,7 +14,7 @@ Use this tool in combination with your `.travis.yml` file:
     - npm install
     ...
     after_deploy:
-    - travis-ci-cloudfront-invalidation -a $AWS_ACCESS_KEY -s $AWS_SECRET_KEY -c $AWS_CLOUDFRONT_DIST_ID -i '/*' -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST
+    - travis-ci-cloudfront-invalidation -a $AWS_ACCESS_KEY -s $AWS_SECRET_KEY -c $AWS_CLOUDFRONT_DIST_ID -i '/*' -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST -o 'master,stage'
 
 
 ## Usage
@@ -34,4 +34,4 @@ These flags are optional:
 
 ## Example
 
-    travis-ci-cloudfront-invalidation -a QDUAIUQ3OQ7I2WDNLUCO, -s f4GTRs34nRS3Ntf678lDsT87Qszvrs23lmREd57 -c Y54SDKE34MDTU1 -i '/*' -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST -o 'master,stage'
+    travis-ci-cloudfront-invalidation -a $AWS_ACCESS_KEY -s $AWS_SECRET_KEY -c $AWS_CLOUDFRONT_DIST_ID -i '/*' -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST -o 'master,stage'
