@@ -2,14 +2,15 @@
 
 const AWS = require('aws-sdk');
 const argv = require('minimist')(process.argv.slice(2),{
-    string: ['AWSAccessKey', 'AWSSecretKey', 'CloudFrontDistributionId', 'ItemsforInvalidation', 'TravisBranch', 'TravisPullRequest'],
+    string: ['AWSAccessKey', 'AWSSecretKey', 'CloudFrontDistributionId', 'ItemsforInvalidation', 'TravisBranch', 'TravisPullRequest', 'OnBranches'],
     alias: {
         a: 'AWSAccessKey',
         s: 'AWSSecretKey',
         c: 'CloudFrontDistributionId',
         i: 'ItemsforInvalidation',
         b: 'TravisBranch',
-        p: 'TravisPullRequest'
+        p: 'TravisPullRequest',
+        o: 'OnBranches'
     }
 });
 
@@ -22,16 +23,16 @@ const accessKey = argv.AWSAccessKey;
 const secretKey = argv.AWSSecretKey;
 const distributionId = argv.CloudFrontDistributionId;
 const items = argv.ItemsforInvalidation.split(',');
-const isMaster = (argv.TravisBranch === 'master');
-const isPR = (argv.TravisPullRequest && argv.TravisPullRequest != 'false');
+const isPR = (argv.TravisPullRequest && argv.TravisPullRequest !== 'false');
+const branches = (argv.OnBranches || 'master').split(',').map(branch => branch.trim());
 
 if (isPR !== undefined && isPR) {
   console.log('Travis CI started due to pull request, update of CloudFront not performed.');
   process.exit(0);
 }
 
-if (!isMaster) {
-  console.log('Travis CI not running on Master branch, update of CloudFront not performed.');
+if (branches.indexOf(argv.TravisBranch.trim()) === -1) {
+  console.log('Travis CI not running on ' + argv.TravisBranch + ' branch, update of CloudFront not performed. Allowed branches: [' + branches.join(', ') + '].');
   process.exit(0);
 }
 
@@ -55,7 +56,7 @@ var params = {
 
 cloudfront.createInvalidation(params, function(err, data) {
   if (err) {
-    console.log('Error invalidting CloudFront Cache: ' + JSON.stringify(err));
+    console.log('Error invalidating CloudFront Cache: ' + JSON.stringify(err));
     process.exit(1);
   } else {
     console.log(JSON.stringify(data));

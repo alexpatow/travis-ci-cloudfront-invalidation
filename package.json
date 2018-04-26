@@ -1,6 +1,6 @@
 {
   "name": "travis-ci-cloudfront-invalidation",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Simple invalidation tool for AWS CloudFront distributions, called after Travis CI is run.",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,8 @@
   "bin": {
     "travis-ci-cloudfront-invalidation": "index.js"
   },
-  "engines" : { "node" : ">=4.3.2" },
+  "engines": {
+    "node": ">=4.3.2"
+  },
   "reveal": true
 }
