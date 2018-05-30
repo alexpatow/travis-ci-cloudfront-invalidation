@@ -4,6 +4,13 @@ Node tool for invalidation of CloudFront distributions after an update to an S3 
 
 ## Installation
 
+Install using npm:
+```
+npm i travis-ci-cloudfront-invalidation --save-dev
+```
+
+Ensure the aws account has permissions to create a cloudfront invalidation. This permission is part of the `CloudFrontFullAccess` policy.
+
 Use this tool in combination with your `.travis.yml` file:
 
     language: node_js
@@ -24,7 +31,7 @@ travis-ci-cloudfront-invalidation requires six flags:
     a: 'AWSAccessKey'
     s: 'AWSSecretKey'
     c: 'CloudFrontDistributionId'
-    i: 'ItemsforInvalidation'
+    i: 'ItemsforInvalidation' (comma separated list)
     b: 'TravisBranch'
     p: 'TravisPullRequest'
 
