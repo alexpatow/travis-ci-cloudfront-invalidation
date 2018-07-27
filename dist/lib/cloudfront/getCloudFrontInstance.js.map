@@ -1,0 +1,1 @@
+{"version":3,"file":"getCloudFrontInstance.js","sourceRoot":"","sources":["../../../src/cloudfront/getCloudFrontInstance.ts"],"names":[],"mappings":";;AAAA,6BAA+B;AAI/B,+BACE,IAAiB;IAEjB,OAAO,IAAI,GAAG,CAAC,UAAU,CAAC;QACxB,WAAW,EAAE,IAAI,CAAC,SAAS;QAC3B,eAAe,EAAE,IAAI,CAAC,SAAS;KAChC,CAAC,CAAC;AACL,CAAC;AAPD,wCAOC"}
