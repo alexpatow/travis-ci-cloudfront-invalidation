@@ -27,9 +27,6 @@ jspm_packages
 # testing
 coverage
 
-# production
-build
-
 # misc
 .DS_Store
 npm-debug.log

@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '8'
+install:
+- npm install
+before_deploy:
+- npm build
+deploy:
+  provider: npm
+  script: echo "Deploying to npm..."
+  api_key: $NPM_API_KEY
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true

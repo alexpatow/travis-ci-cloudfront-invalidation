@@ -1,10 +1,13 @@
 {
   "name": "travis-ci-cloudfront-invalidation",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple invalidation tool for AWS CloudFront distributions, called after Travis CI is run.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm-run-all clean build:ts",
+    "build:ts": "tsc",
+    "clean": "rimraf dist",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -22,14 +25,31 @@
   },
   "homepage": "https://github.com/alexpatow/travis-ci-cloudfront-invalidation#readme",
   "dependencies": {
-    "aws-sdk": "^2.6.15",
-    "minimist": "^1.2.0"
+    "aws-sdk": "^2.279.1",
+    "minimist": "^1.2.0",
+    "moment": "^2.22.2",
+    "winston": "^2.4.3"
   },
   "bin": {
-    "travis-ci-cloudfront-invalidation": "index.js"
+    "travis-ci-cloudfront-invalidation": "dist/lib/index.js"
   },
   "engines": {
-    "node": ">=4.3.2"
+    "node": ">=6.0.0"
   },
-  "reveal": true
+  "reveal": true,
+  "devDependencies": {
+    "@types/jest": "^23.3.0",
+    "@types/minimist": "^1.2.0",
+    "@types/moment": "^2.13.0",
+    "@types/node": "^10.5.2",
+    "@types/winston": "^2.3.9",
+    "jest": "^23.4.1",
+    "npm-run-all": "^4.1.3",
+    "prettier": "^1.13.7",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.14.0",
+    "typescript": "^2.9.2"
+  }
 }
