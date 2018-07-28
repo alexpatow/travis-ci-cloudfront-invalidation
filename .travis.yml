@@ -8,6 +8,7 @@ before_deploy:
 deploy:
   provider: npm
   script: echo "Deploying to npm..."
+  email: $NPM_EMAIL_ADDR
   api_key: $NPM_API_KEY
   skip_cleanup: true
   on:
